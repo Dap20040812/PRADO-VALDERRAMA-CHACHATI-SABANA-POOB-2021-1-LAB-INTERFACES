@@ -2,6 +2,8 @@ package edu.sabana.poob.shapes;
 
 public interface GeometricShape2D {
 
+
+    double PI = Math.PI;
     /**
      * Calcula el área de una Figura geometrica en 2D.
      * <br><br>

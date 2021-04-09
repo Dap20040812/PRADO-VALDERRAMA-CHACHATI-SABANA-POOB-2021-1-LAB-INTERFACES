@@ -9,8 +9,7 @@ package edu.sabana.poob.shapes;
 
 public class Circle extends Shape implements GeometricShape2D {
 
-    private double radius;
-    private final static double PI = Math.PI;
+    protected double radius;
 
     public Circle() {
         this.radius = 1.0;
