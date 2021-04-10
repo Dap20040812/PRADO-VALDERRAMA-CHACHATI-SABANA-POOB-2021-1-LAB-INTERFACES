@@ -75,8 +75,8 @@ public class CylinderTest {
     @Test
     public void shouldPrintCylinder() {
 
-        assertTrue(c1.toStringGeometricShape2D().contains("This is a Cylinder"));
-        assertTrue(c2.toStringGeometricShape2D().contains("This is a Cylinder"));
-        assertTrue(c3.toStringGeometricShape2D().contains("This is a Cylinder"));
+        assertTrue(c1.toStringGeometricShape3D().contains("This is a Cylinder"));
+        assertTrue(c2.toStringGeometricShape3D().contains("This is a Cylinder"));
+        assertTrue(c3.toStringGeometricShape3D().contains("This is a Cylinder"));
     }
 }
