@@ -41,3 +41,17 @@ Cylinder hereda de circle que asu vez hereda de shape
  ## Parte 3
 
  ![](img/UMLP3.svg)
+
+ ## Parte 5
+
+ ### UML
+
+ ![](img/UMLP5.svg)
+
+ ### Secuencia
+
+ ![](img/IFamilyCompensationFund.svg)
+
+ ### Evidencia Pruebas
+
+ ![](img/EVI1P5.png)

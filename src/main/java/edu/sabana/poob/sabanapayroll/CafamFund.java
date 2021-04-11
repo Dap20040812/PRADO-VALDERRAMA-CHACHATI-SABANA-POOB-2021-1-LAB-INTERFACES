@@ -1,35 +1,22 @@
 package edu.sabana.poob.sabanapayroll;
 
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.UUID;
 
-public class ColsubsidioFund implements IFamilyCompensationFund {
+public class CafamFund implements IFamilyCompensationFund {
 
-    private static Map<UUID, Employee> registeredEmployees = new HashMap<>();
-
-    public ColsubsidioFund() {
-
-    }
+    private static Set<Employee> registeredEmployees = new HashSet<>();
     /**
-     * Registra un empleado por salario y por horas
+     * Registra un empleado
      * @param employee
      * @return True si puede registrar al empleado - False si no
      */
     @Override
     public boolean registerEmployee(Employee employee) {
 
-        boolean result = false;
-        if(employee.getClass() != EmployeeByCommission.class)
-        {
-           if(!isEmployeeRegistered(employee.getId()))
-           {
-               registeredEmployees.put(employee.getId(),employee);
-               result = true;
-           }
-        }
-        return result;
+        return registeredEmployees.add(employee);
     }
     /**
      * Elimina un empleado con un id dado
@@ -40,11 +27,14 @@ public class ColsubsidioFund implements IFamilyCompensationFund {
     public boolean deleteEmployee(UUID id) {
 
         boolean result = false;
+        Iterator<Employee> it = registeredEmployees.iterator();
 
-        if(isEmployeeRegistered(id))
-        {
-            registeredEmployees.remove(id);
-            result = true;
+        while (!result && it.hasNext()) {
+            Employee employee1 = it.next();
+            if (employee1.getId() == id) {
+                registeredEmployees.remove(employee1);
+                result = true;
+            }
         }
         return result;
     }
@@ -57,9 +47,13 @@ public class ColsubsidioFund implements IFamilyCompensationFund {
     public boolean isEmployeeRegistered(UUID id) {
 
         boolean result = false;
-        if(registeredEmployees.containsKey(id))
-        {
-            result = true;
+        Iterator<Employee> it = registeredEmployees.iterator();
+
+        while (!result && it.hasNext()) {
+            Employee employee1 = it.next();
+            if (employee1.getId() == id) {
+                result = true;
+            }
         }
         return result;
     }
@@ -69,7 +63,6 @@ public class ColsubsidioFund implements IFamilyCompensationFund {
      */
     @Override
     public String printBenefits() {
-
         return "\n"+("- Salud" + "- Sedes");
     }
 }

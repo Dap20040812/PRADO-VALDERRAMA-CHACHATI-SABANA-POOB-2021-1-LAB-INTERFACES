@@ -31,8 +31,16 @@ public abstract class BankAccount {
      * @param amount El monto a depositar.
      * @return Si la operación fue exitosa.
      */
-    public boolean deposit(double amount) {
-        return false;
+    public boolean deposit(double amount)
+    {
+        boolean result = false;
+        if(amount > getDepositDiscount())
+        {
+            balance += amount - getDepositDiscount();
+            result = true;
+        }
+
+        return result;
     }
 
     /**
@@ -47,7 +55,14 @@ public abstract class BankAccount {
      * @return Si la operación fue exitosa.
      */
     public boolean withdraw(double amount) {
-        return false;
+
+        boolean result = false;
+        if(balance >= amount + (amount/TAX_4_1000))
+        {
+            balance -= amount + (amount/TAX_4_1000);
+            result = true;
+        }
+        return result;
     }
 
     /**

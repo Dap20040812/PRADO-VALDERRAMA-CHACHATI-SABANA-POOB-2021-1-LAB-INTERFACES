@@ -11,7 +11,7 @@ import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ColsubsidioFundTest {
+public class CompensarFundTest {
 
     private static Faker faker;
 
@@ -24,7 +24,7 @@ public class ColsubsidioFundTest {
     private static EmployeeByHours employeeByHours;
     private static EmployeeByCommission employeeByCommission;
 
-    private static IFamilyCompensationFund colsubsidioFund;
+    private static IFamilyCompensationFund compensarFund;
 
     @BeforeAll
     public static void setUp() {
@@ -34,7 +34,6 @@ public class ColsubsidioFundTest {
 
         employeeBySalary = new EmployeeBySalary(faker.name().firstName(), faker.name().lastName(), department, 1000000,"Saving");
         employeeBySalary1 = new EmployeeBySalary(faker.name().firstName(), faker.name().lastName(), department, 1000000,"Saving");
-
         employeeByHours = new EmployeeByHours(faker.name().firstName(), faker.name().lastName(), department, 40,"Checking");
         employeeByCommission = new EmployeeByCommission(faker.name().firstName(), faker.name().lastName(), department, 100,"checking");
 
@@ -44,67 +43,65 @@ public class ColsubsidioFundTest {
         employees.add(employeeByHours);
         employees.add(employeeByCommission);
 
-        colsubsidioFund = new ColsubsidioFund();
-
+        compensarFund = new CompensarFund();
     }
 
     @Test
     @DisplayName("GIVEN a employee by salary WHEN try to register THEN success")
     public void shouldRegisterEmployee() {
 
-        assertTrue(colsubsidioFund.registerEmployee(employeeBySalary1));
+        assertTrue(compensarFund.registerEmployee(employeeBySalary1));
     }
 
     @Test
     @DisplayName("GIVEN a employee by commission WHEN try to register THEN fails")
     public void shouldNotRegisterEmployeeWhenByCommission() {
 
-        assertFalse(colsubsidioFund.registerEmployee(employeeByCommission));
+        assertFalse(compensarFund.registerEmployee(employeeByHours));
     }
 
     @Test
     @DisplayName("GIVEN a employee by salary registered WHEN try to register again THEN fails")
     public void shouldNotRegisterEmployeeWhenDuplicated() {
 
-        assertTrue(colsubsidioFund.registerEmployee(employeeByHours));
-        assertFalse(colsubsidioFund.registerEmployee(employeeByHours));
+        assertTrue(compensarFund.registerEmployee(employeeByCommission));
+        assertFalse(compensarFund.registerEmployee(employeeByCommission));
     }
 
     @Test
     @DisplayName("GIVEN a employee by salary registered WHEN try to delete THEN success")
     public void shouldDeleteEmployee() {
 
-        assertTrue(colsubsidioFund.registerEmployee(employeeBySalary));
-        assertTrue(colsubsidioFund.deleteEmployee(employeeBySalary.getId()));
+        assertTrue(compensarFund.registerEmployee(employeeBySalary));
+        assertTrue(compensarFund.deleteEmployee(employeeBySalary.getId()));
     }
 
     @Test
     @DisplayName("GIVEN a employee by salary not registered WHEN try to delete THEN fails")
     public void shouldNotDeleteEmployee() {
 
-        assertFalse(colsubsidioFund.deleteEmployee(employeeBySalary.getId()));
+        assertFalse(compensarFund.deleteEmployee(employeeBySalary.getId()));
     }
 
     @Test
     @DisplayName("GIVEN a employee by salary registered WHEN try to validate is registered THEN success")
     public void shouldValidateEmployeeIsRegistered() {
 
-        assertTrue(colsubsidioFund.registerEmployee(employeeBySalary));
-        assertTrue(colsubsidioFund.isEmployeeRegistered(employeeBySalary.getId()));
+        assertTrue(compensarFund.registerEmployee(employeeBySalary));
+        assertTrue(compensarFund.isEmployeeRegistered(employeeBySalary.getId()));
     }
 
     @Test
     @DisplayName("GIVEN a employee by salary not registered WHEN try to validate is registered THEN fails")
     public void shouldNotValidateEmployeeIsRegistered() {
 
-        assertFalse(colsubsidioFund.isEmployeeRegistered(employeeBySalary.getId()));
+        assertFalse(compensarFund.isEmployeeRegistered(employeeBySalary.getId()));
     }
 
     @Test
     public void shouldPrintBenefits() {
 
-        String benefits = colsubsidioFund.printBenefits();
+        String benefits = compensarFund.printBenefits();
         assertNotNull(benefits);
     }
-
 }
