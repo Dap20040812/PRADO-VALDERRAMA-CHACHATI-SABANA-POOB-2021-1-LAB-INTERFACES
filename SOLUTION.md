@@ -55,3 +55,7 @@ Cylinder hereda de circle que asu vez hereda de shape
  ### Evidencia Pruebas
 
  ![](img/EVI1P5.png)
+
+ ## Parte 6
+
+ ![](img/UMLP6.svg)
